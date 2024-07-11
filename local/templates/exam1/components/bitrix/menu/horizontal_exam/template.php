@@ -19,11 +19,23 @@ foreach($arResult as $arItem):?>
 	<?if ($previousLevel && $arItem["DEPTH_LEVEL"] < $previousLevel):?>
 		<?=str_repeat("</ul></li>", ($previousLevel - $arItem["DEPTH_LEVEL"]));?>
 	<?endif?>
+	
+	<? 
+			
+			$Col = "";
+			if(isset($arItem['PARAMS']['COLOR'])) { 
+			$Col = $arItem['PARAMS']['COLOR']?>
 
+<?}?>
 	<?if ($arItem["IS_PARENT"]):?>
-
+	
 		<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-			<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a>
+
+
+
+
+
+			<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?> <?=$Col?> " ><?=$arItem["TEXT"]?></a>
 				<ul>
 		<?else:?>
 			<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>" class="parent"><?=$arItem["TEXT"]?></a>
@@ -32,7 +44,9 @@ foreach($arResult as $arItem):?>
 		<? 
 		
 		?>
-		<? if(isset($arItem['PARAMS']['main_text_menu'])) { ?>
+		
+		<?
+		if(isset($arItem['PARAMS']['main_text_menu'])) { ?>
 
 			<div class="menu-text"><?=$arItem['PARAMS']['main_text_menu'] ?></div>
 
@@ -44,7 +58,7 @@ foreach($arResult as $arItem):?>
 		<?if ($arItem["PERMISSION"] > "D"):?>
 
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-				<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a></li>
+				<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?> <?=$Col?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
 				<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
 			<?endif?>
